@@ -580,6 +580,7 @@ export const SessionScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   token: 'token',
+  tokenHash: 'tokenHash',
   expiresAt: 'expiresAt',
   createdAt: 'createdAt'
 } as const
@@ -610,7 +611,8 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 export const SessionOrderByRelevanceFieldEnum = {
   id: 'id',
   userId: 'userId',
-  token: 'token'
+  token: 'token',
+  tokenHash: 'tokenHash'
 } as const
 
 export type SessionOrderByRelevanceFieldEnum = (typeof SessionOrderByRelevanceFieldEnum)[keyof typeof SessionOrderByRelevanceFieldEnum]

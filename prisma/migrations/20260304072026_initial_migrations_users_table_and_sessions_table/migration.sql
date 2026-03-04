@@ -2,12 +2,12 @@
 CREATE TABLE `sessions` (
     `id` VARCHAR(191) NOT NULL,
     `user_id` VARCHAR(191) NOT NULL,
-    `token` VARCHAR(191) NOT NULL,
+    `token` TEXT NOT NULL,
+    `token_hash` VARCHAR(64) NOT NULL,
     `expires_at` DATETIME(3) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    UNIQUE INDEX `sessions_token_key`(`token`),
-    INDEX `sessions_token_idx`(`token`),
+    UNIQUE INDEX `sessions_token_hash_unique`(`token_hash`),
     INDEX `sessions_user_id_idx`(`user_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
