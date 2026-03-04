@@ -1,6 +1,6 @@
 import { PrismaClient } from './generated/prisma/client.js'
-
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
+
 const adapter = new PrismaMariaDb({
   host: 'localhost',
   port: 3306,
