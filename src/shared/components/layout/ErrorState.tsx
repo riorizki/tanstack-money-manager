@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button'
+
 interface ErrorStateProps {
   title?: string
   description?: string
@@ -10,7 +12,7 @@ export function ErrorState({
   onRetry,
 }: ErrorStateProps) {
   return (
-    <div className="border border-black px-8 py-16 text-center">
+    <section role="alert" className="border border-black px-8 py-16 text-center">
       <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
         ■ ERROR
       </p>
@@ -19,13 +21,14 @@ export function ErrorState({
         <p className="mt-2 text-sm text-muted-foreground">{description}</p>
       )}
       {onRetry && (
-        <button
+        <Button
           onClick={onRetry}
-          className="mt-6 border border-black px-6 py-2 text-[11px] font-bold uppercase tracking-[0.16em] transition-opacity hover:opacity-70"
+          variant="outline"
+          className="mt-6 rounded-none border-black px-6 py-2 text-[11px] font-bold uppercase tracking-[0.16em] shadow-none hover:bg-black hover:text-white"
         >
           Retry
-        </button>
+        </Button>
       )}
-    </div>
+    </section>
   )
 }

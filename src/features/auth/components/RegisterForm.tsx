@@ -6,8 +6,11 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { registerSchema } from '../schema/register.schema'
 import type { RegisterInput } from '../schema/register.schema'
 import { useRegister } from '../query/auth.queries'
@@ -25,31 +28,40 @@ export function RegisterForm() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-[31rem]">
-      <div className="mb-6 sm:mb-7">
+    <section
+      aria-labelledby="register-form-title"
+      className="mx-auto w-full max-w-[31rem]"
+    >
+      <header className="mb-6 sm:mb-7">
         <p className="text-[10px] font-semibold uppercase tracking-[0.34em] text-black/40">
           ■ New Account
         </p>
-        <h1 className="mt-3 text-5xl font-extrabold leading-[0.92] tracking-[-0.03em] sm:text-7xl">
+        <h1
+          id="register-form-title"
+          className="mt-3 text-5xl font-extrabold leading-[0.92] tracking-[-0.03em] sm:text-7xl"
+        >
           Register.
         </h1>
         <p className="mt-3 max-w-sm text-sm leading-relaxed text-black/50">
           Create your workspace access and start tracking your money flow.
         </p>
-      </div>
+      </header>
 
-      <div className="border-2 border-black bg-[#f6f6f6] shadow-[8px_8px_0_0_#000] sm:shadow-[10px_10px_0_0_#000]">
-        <div className="border-b-2 border-black px-5 py-4 sm:px-7 sm:py-5">
+      <article className="border-2 border-black bg-[#f6f6f6] shadow-[8px_8px_0_0_#000] sm:shadow-[10px_10px_0_0_#000]">
+        <header className="border-b-2 border-black px-5 py-4 sm:px-7 sm:py-5">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/35">
             Account Setup Required
           </p>
-        </div>
+        </header>
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="space-y-6 border-b-2 border-black px-5 py-5 sm:space-y-7 sm:px-7 sm:py-7">
               {error && (
-                <p className="border-2 border-black bg-black/5 px-3 py-2 text-xs font-semibold tracking-[0.02em] text-black">
+                <p
+                  role="alert"
+                  className="border-2 border-black bg-black/5 px-3 py-2 text-xs font-semibold tracking-[0.02em] text-black"
+                >
                   {error.message}
                 </p>
               )}
@@ -59,14 +71,15 @@ export function RegisterForm() {
                 name="name"
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/45">
+                    <FormLabel className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/45">
                       Full Name
-                    </p>
+                    </FormLabel>
                     <FormControl>
-                      <input
+                      <Input
                         type="text"
                         placeholder="Your name"
-                        className="h-11 w-full border-0 border-b-2 border-black/35 bg-transparent px-0 text-base font-medium text-black outline-none transition-colors placeholder:text-black/25 focus:border-black"
+                        autoComplete="name"
+                        className="h-11 w-full rounded-none border-0 border-b-2 border-black/35 bg-transparent px-0 text-base font-medium text-black shadow-none transition-colors placeholder:text-black/25 focus-visible:border-black focus-visible:ring-0"
                         {...field}
                       />
                     </FormControl>
@@ -80,14 +93,15 @@ export function RegisterForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/45">
+                    <FormLabel className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/45">
                       Email
-                    </p>
+                    </FormLabel>
                     <FormControl>
-                      <input
+                      <Input
                         type="email"
                         placeholder="you@example.com"
-                        className="h-11 w-full border-0 border-b-2 border-black/35 bg-transparent px-0 text-base font-medium text-black outline-none transition-colors placeholder:text-black/25 focus:border-black"
+                        autoComplete="email"
+                        className="h-11 w-full rounded-none border-0 border-b-2 border-black/35 bg-transparent px-0 text-base font-medium text-black shadow-none transition-colors placeholder:text-black/25 focus-visible:border-black focus-visible:ring-0"
                         {...field}
                       />
                     </FormControl>
@@ -101,14 +115,15 @@ export function RegisterForm() {
                 name="password"
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/45">
+                    <FormLabel className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/45">
                       Password
-                    </p>
+                    </FormLabel>
                     <FormControl>
-                      <input
+                      <Input
                         type="password"
                         placeholder="Minimum 8 characters"
-                        className="h-11 w-full border-0 border-b-2 border-black/35 bg-transparent px-0 text-base font-medium text-black outline-none transition-colors placeholder:text-black/25 focus:border-black"
+                        autoComplete="new-password"
+                        className="h-11 w-full rounded-none border-0 border-b-2 border-black/35 bg-transparent px-0 text-base font-medium text-black shadow-none transition-colors placeholder:text-black/25 focus-visible:border-black focus-visible:ring-0"
                         {...field}
                       />
                     </FormControl>
@@ -122,14 +137,15 @@ export function RegisterForm() {
                 name="confirmPassword"
                 render={({ field }) => (
                   <FormItem className="space-y-2">
-                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/45">
+                    <FormLabel className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/45">
                       Confirm Password
-                    </p>
+                    </FormLabel>
                     <FormControl>
-                      <input
+                      <Input
                         type="password"
                         placeholder="Repeat password"
-                        className="h-11 w-full border-0 border-b-2 border-black/35 bg-transparent px-0 text-base font-medium text-black outline-none transition-colors placeholder:text-black/25 focus:border-black"
+                        autoComplete="new-password"
+                        className="h-11 w-full rounded-none border-0 border-b-2 border-black/35 bg-transparent px-0 text-base font-medium text-black shadow-none transition-colors placeholder:text-black/25 focus-visible:border-black focus-visible:ring-0"
                         {...field}
                       />
                     </FormControl>
@@ -139,14 +155,14 @@ export function RegisterForm() {
               />
             </div>
 
-            <div className="space-y-5 px-5 py-5 sm:px-7 sm:py-6">
-              <button
+            <footer className="space-y-5 px-5 py-5 sm:px-7 sm:py-6">
+              <Button
                 type="submit"
                 disabled={isPending}
-                className="h-12 w-full bg-black px-6 text-[11px] font-bold uppercase tracking-[0.28em] text-white transition-colors hover:bg-black/85 disabled:cursor-not-allowed disabled:opacity-50"
+                className="h-12 w-full rounded-none border border-black bg-black px-6 text-[11px] font-bold uppercase tracking-[0.28em] text-white shadow-none transition-colors hover:bg-black/85 hover:text-white"
               >
                 {isPending ? 'Creating account...' : 'Create Account'}
-              </button>
+              </Button>
 
               <p className="text-center text-[11px] uppercase tracking-[0.16em] text-black/35">
                 Already have an account?{' '}
@@ -157,15 +173,15 @@ export function RegisterForm() {
                   Sign In
                 </Link>
               </p>
-            </div>
+            </footer>
           </form>
         </Form>
-      </div>
+      </article>
 
-      <div className="mt-7 flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.3em] text-black/30">
+      <footer className="mt-7 flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.3em] text-black/30">
         <span>Identity Provisioning</span>
         <span>00 — 02</span>
-      </div>
-    </div>
+      </footer>
+    </section>
   )
 }

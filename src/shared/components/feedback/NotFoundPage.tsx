@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { Button } from '@/components/ui/button'
 
 export function NotFoundPage() {
   return (
@@ -23,12 +24,12 @@ export function NotFoundPage() {
           </p>
         </div>
 
-        <Link
-          to="/"
-          className="mt-8 inline-flex h-12 items-center justify-center bg-black px-7 text-[11px] font-bold uppercase tracking-[0.28em] text-white transition-colors hover:bg-black/85"
+        <Button
+          asChild
+          className="mt-8 inline-flex h-12 rounded-none border border-black bg-black px-7 text-[11px] font-bold uppercase tracking-[0.28em] text-white shadow-none transition-colors hover:bg-black/85 hover:text-white"
         >
-          Back To Home
-        </Link>
+          <Link to="/">Back To Home</Link>
+        </Button>
 
         <div className="mt-14 flex items-center gap-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/30">
           <span className="h-px flex-1 bg-black/15" />

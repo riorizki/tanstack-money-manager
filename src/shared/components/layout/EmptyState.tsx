@@ -6,7 +6,7 @@ interface EmptyStateProps {
 
 export function EmptyState({ title, description, action }: EmptyStateProps) {
   return (
-    <div className="border border-black px-8 py-16 text-center">
+    <section className="border border-black px-8 py-16 text-center">
       <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
         ■ EMPTY
       </p>
@@ -14,7 +14,7 @@ export function EmptyState({ title, description, action }: EmptyStateProps) {
       {description && (
         <p className="mt-2 text-sm text-muted-foreground">{description}</p>
       )}
-      {action && <div className="mt-6">{action}</div>}
-    </div>
+      {action && <footer className="mt-6">{action}</footer>}
+    </section>
   )
 }

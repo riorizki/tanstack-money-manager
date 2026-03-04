@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button'
+
 interface RootErrorPageProps {
   message?: string
   onRetry?: () => void
@@ -29,13 +31,13 @@ export function RootErrorPage({
         </div>
 
         {onRetry ? (
-          <button
+          <Button
             type="button"
             onClick={onRetry}
-            className="mt-8 inline-flex h-12 items-center justify-center bg-black px-7 text-[11px] font-bold uppercase tracking-[0.28em] text-white transition-colors hover:bg-black/85"
+            className="mt-8 inline-flex h-12 rounded-none border border-black bg-black px-7 text-[11px] font-bold uppercase tracking-[0.28em] text-white shadow-none transition-colors hover:bg-black/85 hover:text-white"
           >
             Try Again
-          </button>
+          </Button>
         ) : null}
 
         <div className="mt-14 flex items-center gap-4 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/30">

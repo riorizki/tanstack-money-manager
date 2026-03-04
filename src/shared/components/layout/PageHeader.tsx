@@ -7,7 +7,7 @@ interface PageHeaderProps {
 
 export function PageHeader({ section, title, description, actions }: PageHeaderProps) {
   return (
-    <div className="mb-10">
+    <header className="mb-10">
       {section && (
         <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
           <span className="mr-2 inline-block">■</span>
@@ -26,6 +26,6 @@ export function PageHeader({ section, title, description, actions }: PageHeaderP
         </div>
         {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
       </div>
-    </div>
+    </header>
   )
 }
