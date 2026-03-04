@@ -30,7 +30,12 @@ export function AppSidebar() {
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto">
         {NAV_ITEMS.map((item) => (
-          <NavItem key={item.to} to={item.to} label={item.label} icon={item.icon} />
+          <NavItem
+            key={item.to}
+            to={item.to}
+            label={item.label}
+            icon={item.icon}
+          />
         ))}
       </nav>
 

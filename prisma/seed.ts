@@ -1,6 +1,7 @@
 import { PrismaClient } from '../src/generated/prisma/client.js'
-
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
+import bcrypt from 'bcryptjs'
+
 const adapter = new PrismaMariaDb({
   host: 'localhost',
   port: 3306,
@@ -12,19 +13,25 @@ const prisma = new PrismaClient({ adapter })
 async function main() {
   console.log('🌱 Seeding database...')
 
-  // Clear existing todos
-  await prisma.todo.deleteMany()
+  await prisma.session.deleteMany()
 
-  // Create example todos
-  const todos = await prisma.todo.createMany({
-    data: [
-      { title: 'Buy groceries' },
-      { title: 'Read a book' },
-      { title: 'Workout' },
-    ],
+  const email = 'demo@moneymanager.local'
+  const passwordHash = await bcrypt.hash('password123', 10)
+
+  const user = await prisma.user.upsert({
+    where: { email },
+    update: {
+      name: 'Demo User',
+      passwordHash,
+    },
+    create: {
+      email,
+      name: 'Demo User',
+      passwordHash,
+    },
   })
 
-  console.log(`✅ Created ${todos.count} todos`)
+  console.log(`✅ Seeded auth demo user: ${user.email}`)
 }
 
 main()

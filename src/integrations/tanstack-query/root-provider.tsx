@@ -1,9 +1,11 @@
 import type { ReactNode } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import type { AuthUser } from '@/features/auth/types'
 
 let context:
   | {
       queryClient: QueryClient
+      user: AuthUser | null
     }
   | undefined
 
@@ -16,6 +18,7 @@ export function getContext() {
 
   context = {
     queryClient,
+    user: null,
   }
 
   return context

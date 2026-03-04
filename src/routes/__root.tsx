@@ -7,17 +7,24 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { Component, type ErrorInfo, type ReactNode } from 'react'
 
-import TanStackQueryProvider from '../integrations/tanstack-query/root-provider'
+import { getSessionFn } from '@/features/auth/server/get-session'
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
+import TanStackQueryProvider from '../integrations/tanstack-query/root-provider'
 import appCss from '../styles.css?url'
 
+import type { AuthUser } from '@/features/auth/types'
 import type { QueryClient } from '@tanstack/react-query'
 
 interface MyRouterContext {
   queryClient: QueryClient
+  user: AuthUser | null
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
+  beforeLoad: async () => {
+    const user = await getSessionFn()
+    return { user }
+  },
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
@@ -66,7 +73,9 @@ class ErrorBoundary extends Component<
               {this.state.error?.message ?? 'An unexpected error occurred.'}
             </p>
             <button
-              onClick={() => this.setState({ hasError: false, error: undefined })}
+              onClick={() =>
+                this.setState({ hasError: false, error: undefined })
+              }
               className="mt-6 w-full border border-black py-3 text-[11px] font-bold uppercase tracking-[0.16em] transition-opacity hover:opacity-70"
             >
               Try Again
@@ -89,9 +98,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       </head>
       <body className="font-sans antialiased">
         <TanStackQueryProvider>
-          <ErrorBoundary>
-            {children}
-          </ErrorBoundary>
+          <ErrorBoundary>{children}</ErrorBoundary>
           <TanStackDevtools
             config={{ position: 'bottom-right' }}
             plugins={[

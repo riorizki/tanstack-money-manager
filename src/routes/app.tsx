@@ -1,10 +1,11 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
-import { AppSidebar } from '#/shared/components/nav/AppSidebar'
+import { AppSidebar } from '@/shared/components/nav/AppSidebar'
 
 export const Route = createFileRoute('/app')({
-  beforeLoad: async () => {
-    // Full auth check added in Phase 1 (JWT validation)
-    // For now: stub — always allow
+  beforeLoad: async ({ context }) => {
+    if (!context.user) {
+      throw redirect({ to: '/login' })
+    }
   },
   component: AppLayout,
 })
