@@ -1,5 +1,6 @@
 import type { Prisma } from '@/generated/prisma/client'
 import type { AccountType } from '@/shared/constants/enums'
+import { TransactionType } from '@/shared/constants/enums'
 import { prisma } from '@/shared/lib/prisma'
 import type { AccountFilterInput } from '../schema/account.schema'
 
@@ -13,6 +14,20 @@ function decimalToNumber(value: Prisma.Decimal | number | null | undefined) {
   }
 
   return Number(value)
+}
+
+function getSignedAmountByType(
+  type: TransactionType,
+  amount: number,
+) {
+  const multiplierByType: Record<TransactionType, 1 | -1> = {
+    [TransactionType.INCOME]: 1,
+    [TransactionType.EXPENSE]: -1,
+    [TransactionType.TRANSFER_IN]: 1,
+    [TransactionType.TRANSFER_OUT]: -1,
+  }
+
+  return amount * multiplierByType[type]
 }
 
 interface CreateAccountData {
@@ -80,5 +95,36 @@ export const accountRepository = {
     })
 
     return decimalToNumber(result._sum.startingBalance)
+  },
+
+  async getBalanceAdjustmentsByAccountIds(userId: string, accountIds: string[]) {
+    if (accountIds.length === 0) {
+      return new Map<string, number>()
+    }
+
+    const grouped = await prisma.transaction.groupBy({
+      by: ['accountId', 'type'],
+      where: {
+        userId,
+        accountId: { in: accountIds },
+      },
+      _sum: {
+        amount: true,
+      },
+    })
+
+    const adjustments = new Map<string, number>()
+
+    for (const row of grouped) {
+      const current = adjustments.get(row.accountId) ?? 0
+      const movement = getSignedAmountByType(
+        row.type as TransactionType,
+        decimalToNumber(row._sum.amount),
+      )
+
+      adjustments.set(row.accountId, current + movement)
+    }
+
+    return adjustments
   },
 }

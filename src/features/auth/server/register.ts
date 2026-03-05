@@ -5,6 +5,7 @@ import { userRepository } from '../repository/user.repository'
 import { sessionRepository } from '../repository/session.repository'
 import { hashPassword } from '@/shared/lib/password'
 import { getTokenExpiry, signAccessToken } from '@/shared/lib/jwt'
+import { categoryRepository } from '@/features/categories/repository/category.repository'
 import type { AuthUser } from '../types'
 
 export const registerFn = createServerFn({ method: 'POST' })
@@ -21,6 +22,7 @@ export const registerFn = createServerFn({ method: 'POST' })
       email: data.email,
       passwordHash,
     })
+    await categoryRepository.seedDefaults(user.id)
 
     const token = signAccessToken({ userId: user.id, email: user.email })
     const { expiresAt, maxAgeSeconds } = getTokenExpiry(token)

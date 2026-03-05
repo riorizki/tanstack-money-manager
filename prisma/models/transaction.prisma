@@ -1,0 +1,71 @@
+model Category {
+  id           String          @id @default(cuid()) @map("id")
+  userId       String          @map("user_id")
+  name         String          @map("name")
+  type         TransactionType @map("type")
+  color        String?         @map("color")
+  icon         String?         @map("icon")
+  parentId     String?         @map("parent_id")
+  isDefault    Boolean         @default(false) @map("is_default")
+  createdAt    DateTime        @default(now()) @map("created_at")
+  updatedAt    DateTime        @updatedAt @map("updated_at")
+  parent       Category?       @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: SetNull)
+  children     Category[]      @relation("CategoryHierarchy")
+  user         User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  merchants    Merchant[]
+  transactions Transaction[]
+
+  @@index([userId], map: "categories_user_id_idx")
+  @@index([userId, type], map: "categories_user_id_type_idx")
+  @@map("categories")
+}
+
+model Merchant {
+  id           String        @id @default(cuid()) @map("id")
+  userId       String        @map("user_id")
+  name         String        @map("name")
+  categoryId   String?       @map("category_id")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category     Category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  transactions Transaction[]
+
+  @@unique([userId, name], map: "merchants_user_id_name_key")
+  @@index([userId], map: "merchants_user_id_idx")
+  @@index([categoryId], map: "merchants_category_id_idx")
+  @@map("merchants")
+}
+
+model Transaction {
+  id         String          @id @default(cuid()) @map("id")
+  userId     String          @map("user_id")
+  accountId  String          @map("account_id")
+  categoryId String?         @map("category_id")
+  merchantId String?         @map("merchant_id")
+  type       TransactionType @map("type")
+  amount     Decimal         @db.Decimal(18, 2) @map("amount")
+  date       DateTime        @map("date")
+  notes      String?         @db.Text @map("notes")
+  transferId String?         @map("transfer_id")
+  recurringId String?        @map("recurring_id")
+  createdAt  DateTime        @default(now()) @map("created_at")
+  updatedAt  DateTime        @updatedAt @map("updated_at")
+  user       User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  account    Account         @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  category   Category?       @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  merchant   Merchant?       @relation(fields: [merchantId], references: [id], onDelete: SetNull)
+
+  @@index([userId, date], map: "transactions_user_id_date_idx")
+  @@index([userId, accountId], map: "transactions_user_id_account_id_idx")
+  @@index([userId, categoryId], map: "transactions_user_id_category_id_idx")
+  @@index([userId, merchantId], map: "transactions_user_id_merchant_id_idx")
+  @@map("transactions")
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+  TRANSFER_OUT
+  TRANSFER_IN
+}

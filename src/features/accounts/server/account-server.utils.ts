@@ -13,6 +13,7 @@ export function normalizeOptionalField(value: string | null | undefined) {
 
 export function toAccountWithBalance(
   account: PrismaAccount,
+  netMovement = 0,
 ): AccountWithBalance {
   const startingBalance = Number(account.startingBalance)
 
@@ -23,7 +24,7 @@ export function toAccountWithBalance(
     type: account.type as AccountType,
     currency: account.currency,
     startingBalance,
-    currentBalance: startingBalance,
+    currentBalance: startingBalance + netMovement,
     color: account.color,
     icon: account.icon,
     isActive: account.isActive,

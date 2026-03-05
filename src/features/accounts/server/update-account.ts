@@ -27,5 +27,10 @@ export const updateAccount = createServerFn({ method: 'POST' })
       throw new Error('Account not found')
     }
 
-    return toAccountWithBalance(account)
+    const adjustments = await accountRepository.getBalanceAdjustmentsByAccountIds(
+      user.id,
+      [account.id],
+    )
+
+    return toAccountWithBalance(account, adjustments.get(account.id) ?? 0)
   })

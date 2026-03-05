@@ -1,6 +1,7 @@
 import {
   LayoutDashboard,
   ArrowLeftRight,
+  Tags,
   Wallet,
   Target,
   PieChart,
@@ -35,10 +36,11 @@ const NAV_ITEMS = [
     icon: ArrowLeftRight,
     index: '02',
   },
-  { to: '/app/accounts', label: 'Accounts', icon: Wallet, index: '03' },
-  { to: '/app/budgets', label: 'Budgets', icon: PieChart, index: '04' },
-  { to: '/app/goals', label: 'Goals', icon: Target, index: '05' },
-  { to: '/app/settings', label: 'Settings', icon: Settings, index: '06' },
+  { to: '/app/categories', label: 'Categories', icon: Tags, index: '03' },
+  { to: '/app/accounts', label: 'Accounts', icon: Wallet, index: '04' },
+  { to: '/app/budgets', label: 'Budgets', icon: PieChart, index: '05' },
+  { to: '/app/goals', label: 'Goals', icon: Target, index: '06' },
+  { to: '/app/settings', label: 'Settings', icon: Settings, index: '07' },
 ] as const
 
 export function AppSidebar() {

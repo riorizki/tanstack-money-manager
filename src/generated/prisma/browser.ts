@@ -28,6 +28,21 @@ export type Account = Prisma.AccountModel
  */
 export type Session = Prisma.SessionModel
 /**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
+/**
+ * Model Merchant
+ * 
+ */
+export type Merchant = Prisma.MerchantModel
+/**
+ * Model Transaction
+ * 
+ */
+export type Transaction = Prisma.TransactionModel
+/**
  * Model User
  * 
  */

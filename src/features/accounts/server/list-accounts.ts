@@ -9,6 +9,12 @@ export const listAccounts = createServerFn({ method: 'GET' })
   .handler(async ({ data }) => {
     const user = await requireCurrentUser()
     const accounts = await accountRepository.findAllByUser(user.id, data)
+    const balanceAdjustments = await accountRepository.getBalanceAdjustmentsByAccountIds(
+      user.id,
+      accounts.map((account) => account.id),
+    )
 
-    return accounts.map(toAccountWithBalance)
+    return accounts.map((account) =>
+      toAccountWithBalance(account, balanceAdjustments.get(account.id) ?? 0),
+    )
   })

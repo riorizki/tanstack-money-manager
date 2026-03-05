@@ -21,5 +21,5 @@ export const createAccount = createServerFn({ method: 'POST' })
       icon: normalizeOptionalField(data.icon),
     })
 
-    return toAccountWithBalance(account)
+    return toAccountWithBalance(account, 0)
   })

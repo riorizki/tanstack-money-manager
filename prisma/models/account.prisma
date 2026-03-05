@@ -11,6 +11,7 @@ model Account {
   createdAt       DateTime    @default(now()) @map("created_at")
   updatedAt       DateTime    @updatedAt @map("updated_at")
   user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions    Transaction[]
 
   @@index([userId], map: "accounts_user_id_idx")
   @@map("accounts")

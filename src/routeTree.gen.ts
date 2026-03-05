@@ -14,8 +14,12 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as AppTransactionsIndexRouteImport } from './routes/app/transactions/index'
+import { Route as AppCategoriesIndexRouteImport } from './routes/app/categories/index'
 import { Route as AppAccountsIndexRouteImport } from './routes/app/accounts/index'
+import { Route as AppTransactionsNewRouteImport } from './routes/app/transactions/new'
 import { Route as AppAccountsNewRouteImport } from './routes/app/accounts/new'
+import { Route as AppTransactionsTransactionIdEditRouteImport } from './routes/app/transactions/$transactionId/edit'
 import { Route as AppAccountsAccountIdEditRouteImport } from './routes/app/accounts/$accountId/edit'
 
 const RegisterRoute = RegisterRouteImport.update({
@@ -43,9 +47,24 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTransactionsIndexRoute = AppTransactionsIndexRouteImport.update({
+  id: '/transactions/',
+  path: '/transactions/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCategoriesIndexRoute = AppCategoriesIndexRouteImport.update({
+  id: '/categories/',
+  path: '/categories/',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppAccountsIndexRoute = AppAccountsIndexRouteImport.update({
   id: '/accounts/',
   path: '/accounts/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTransactionsNewRoute = AppTransactionsNewRouteImport.update({
+  id: '/transactions/new',
+  path: '/transactions/new',
   getParentRoute: () => AppRoute,
 } as any)
 const AppAccountsNewRoute = AppAccountsNewRouteImport.update({
@@ -53,6 +72,12 @@ const AppAccountsNewRoute = AppAccountsNewRouteImport.update({
   path: '/accounts/new',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTransactionsTransactionIdEditRoute =
+  AppTransactionsTransactionIdEditRouteImport.update({
+    id: '/transactions/$transactionId/edit',
+    path: '/transactions/$transactionId/edit',
+    getParentRoute: () => AppRoute,
+  } as any)
 const AppAccountsAccountIdEditRoute =
   AppAccountsAccountIdEditRouteImport.update({
     id: '/accounts/$accountId/edit',
@@ -67,8 +92,12 @@ export interface FileRoutesByFullPath {
   '/register': typeof RegisterRoute
   '/app/': typeof AppIndexRoute
   '/app/accounts/new': typeof AppAccountsNewRoute
+  '/app/transactions/new': typeof AppTransactionsNewRoute
   '/app/accounts/': typeof AppAccountsIndexRoute
+  '/app/categories/': typeof AppCategoriesIndexRoute
+  '/app/transactions/': typeof AppTransactionsIndexRoute
   '/app/accounts/$accountId/edit': typeof AppAccountsAccountIdEditRoute
+  '/app/transactions/$transactionId/edit': typeof AppTransactionsTransactionIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,8 +105,12 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/app': typeof AppIndexRoute
   '/app/accounts/new': typeof AppAccountsNewRoute
+  '/app/transactions/new': typeof AppTransactionsNewRoute
   '/app/accounts': typeof AppAccountsIndexRoute
+  '/app/categories': typeof AppCategoriesIndexRoute
+  '/app/transactions': typeof AppTransactionsIndexRoute
   '/app/accounts/$accountId/edit': typeof AppAccountsAccountIdEditRoute
+  '/app/transactions/$transactionId/edit': typeof AppTransactionsTransactionIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -87,8 +120,12 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/app/': typeof AppIndexRoute
   '/app/accounts/new': typeof AppAccountsNewRoute
+  '/app/transactions/new': typeof AppTransactionsNewRoute
   '/app/accounts/': typeof AppAccountsIndexRoute
+  '/app/categories/': typeof AppCategoriesIndexRoute
+  '/app/transactions/': typeof AppTransactionsIndexRoute
   '/app/accounts/$accountId/edit': typeof AppAccountsAccountIdEditRoute
+  '/app/transactions/$transactionId/edit': typeof AppTransactionsTransactionIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -99,8 +136,12 @@ export interface FileRouteTypes {
     | '/register'
     | '/app/'
     | '/app/accounts/new'
+    | '/app/transactions/new'
     | '/app/accounts/'
+    | '/app/categories/'
+    | '/app/transactions/'
     | '/app/accounts/$accountId/edit'
+    | '/app/transactions/$transactionId/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -108,8 +149,12 @@ export interface FileRouteTypes {
     | '/register'
     | '/app'
     | '/app/accounts/new'
+    | '/app/transactions/new'
     | '/app/accounts'
+    | '/app/categories'
+    | '/app/transactions'
     | '/app/accounts/$accountId/edit'
+    | '/app/transactions/$transactionId/edit'
   id:
     | '__root__'
     | '/'
@@ -118,8 +163,12 @@ export interface FileRouteTypes {
     | '/register'
     | '/app/'
     | '/app/accounts/new'
+    | '/app/transactions/new'
     | '/app/accounts/'
+    | '/app/categories/'
+    | '/app/transactions/'
     | '/app/accounts/$accountId/edit'
+    | '/app/transactions/$transactionId/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,6 +215,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/transactions/': {
+      id: '/app/transactions/'
+      path: '/transactions'
+      fullPath: '/app/transactions/'
+      preLoaderRoute: typeof AppTransactionsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/categories/': {
+      id: '/app/categories/'
+      path: '/categories'
+      fullPath: '/app/categories/'
+      preLoaderRoute: typeof AppCategoriesIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/accounts/': {
       id: '/app/accounts/'
       path: '/accounts'
@@ -173,11 +236,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAccountsIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/transactions/new': {
+      id: '/app/transactions/new'
+      path: '/transactions/new'
+      fullPath: '/app/transactions/new'
+      preLoaderRoute: typeof AppTransactionsNewRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/accounts/new': {
       id: '/app/accounts/new'
       path: '/accounts/new'
       fullPath: '/app/accounts/new'
       preLoaderRoute: typeof AppAccountsNewRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/transactions/$transactionId/edit': {
+      id: '/app/transactions/$transactionId/edit'
+      path: '/transactions/$transactionId/edit'
+      fullPath: '/app/transactions/$transactionId/edit'
+      preLoaderRoute: typeof AppTransactionsTransactionIdEditRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/accounts/$accountId/edit': {
@@ -193,15 +270,23 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
   AppAccountsNewRoute: typeof AppAccountsNewRoute
+  AppTransactionsNewRoute: typeof AppTransactionsNewRoute
   AppAccountsIndexRoute: typeof AppAccountsIndexRoute
+  AppCategoriesIndexRoute: typeof AppCategoriesIndexRoute
+  AppTransactionsIndexRoute: typeof AppTransactionsIndexRoute
   AppAccountsAccountIdEditRoute: typeof AppAccountsAccountIdEditRoute
+  AppTransactionsTransactionIdEditRoute: typeof AppTransactionsTransactionIdEditRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppIndexRoute: AppIndexRoute,
   AppAccountsNewRoute: AppAccountsNewRoute,
+  AppTransactionsNewRoute: AppTransactionsNewRoute,
   AppAccountsIndexRoute: AppAccountsIndexRoute,
+  AppCategoriesIndexRoute: AppCategoriesIndexRoute,
+  AppTransactionsIndexRoute: AppTransactionsIndexRoute,
   AppAccountsAccountIdEditRoute: AppAccountsAccountIdEditRoute,
+  AppTransactionsTransactionIdEditRoute: AppTransactionsTransactionIdEditRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

@@ -53,6 +53,9 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Account: 'Account',
   Session: 'Session',
+  Category: 'Category',
+  Merchant: 'Merchant',
+  Transaction: 'Transaction',
   User: 'User'
 } as const
 
@@ -99,6 +102,53 @@ export const SessionScalarFieldEnum = {
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  type: 'type',
+  color: 'color',
+  icon: 'icon',
+  parentId: 'parentId',
+  isDefault: 'isDefault',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const MerchantScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MerchantScalarFieldEnum = (typeof MerchantScalarFieldEnum)[keyof typeof MerchantScalarFieldEnum]
+
+
+export const TransactionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  accountId: 'accountId',
+  categoryId: 'categoryId',
+  merchantId: 'merchantId',
+  type: 'type',
+  amount: 'amount',
+  date: 'date',
+  notes: 'notes',
+  transferId: 'transferId',
+  recurringId: 'recurringId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -149,6 +199,42 @@ export const SessionOrderByRelevanceFieldEnum = {
 } as const
 
 export type SessionOrderByRelevanceFieldEnum = (typeof SessionOrderByRelevanceFieldEnum)[keyof typeof SessionOrderByRelevanceFieldEnum]
+
+
+export const CategoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  color: 'color',
+  icon: 'icon',
+  parentId: 'parentId'
+} as const
+
+export type CategoryOrderByRelevanceFieldEnum = (typeof CategoryOrderByRelevanceFieldEnum)[keyof typeof CategoryOrderByRelevanceFieldEnum]
+
+
+export const MerchantOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  name: 'name',
+  categoryId: 'categoryId'
+} as const
+
+export type MerchantOrderByRelevanceFieldEnum = (typeof MerchantOrderByRelevanceFieldEnum)[keyof typeof MerchantOrderByRelevanceFieldEnum]
+
+
+export const TransactionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  accountId: 'accountId',
+  categoryId: 'categoryId',
+  merchantId: 'merchantId',
+  notes: 'notes',
+  transferId: 'transferId',
+  recurringId: 'recurringId'
+} as const
+
+export type TransactionOrderByRelevanceFieldEnum = (typeof TransactionOrderByRelevanceFieldEnum)[keyof typeof TransactionOrderByRelevanceFieldEnum]
 
 
 export const UserOrderByRelevanceFieldEnum = {
