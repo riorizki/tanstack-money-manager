@@ -20,7 +20,7 @@
 |---|-------|------|-----------|------|--------|
 | 0 | Foundation & Infrastructure | [phase-00-foundation.md](./phase-00-foundation.md) | Medium | Pre-MVP | ⬜ |
 | 1 | Authentication | [phase-01-auth.md](./phase-01-auth.md) | Medium | Pre-MVP | ⬜ |
-| 2 | Accounts | [phase-02-accounts.md](./phase-02-accounts.md) | Low-Med | MVP | ⬜ |
+| 2 | Accounts | [phase-02-accounts.md](./phase-02-accounts.md) | Low-Med | MVP | ✅ |
 | 3 | Categories & Transactions | [phase-03-transactions.md](./phase-03-transactions.md) | High | MVP | ⬜ |
 | 4 | Transfers & Dashboard | [phase-04-dashboard.md](./phase-04-dashboard.md) | Medium | MVP | ⬜ |
 | 5 | Budgets & Goals | [phase-05-budgets-goals.md](./phase-05-budgets-goals.md) | Medium | **MVP ✓** | ⬜ |
