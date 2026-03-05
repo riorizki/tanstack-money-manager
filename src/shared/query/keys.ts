@@ -16,8 +16,7 @@ interface AccountFilters extends FilterBase {
 export const queryKeys = {
   accounts: {
     all: () => ['accounts'] as const,
-    list: (filters?: AccountFilters) =>
-      ['accounts', 'list', filters] as const,
+    list: (filters?: AccountFilters) => ['accounts', 'list', filters] as const,
     detail: (id: string) => ['accounts', 'detail', id] as const,
   },
   transactions: {

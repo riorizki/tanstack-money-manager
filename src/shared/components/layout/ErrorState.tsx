@@ -12,7 +12,10 @@ export function ErrorState({
   onRetry,
 }: ErrorStateProps) {
   return (
-    <section role="alert" className="border border-black px-8 py-16 text-center">
+    <section
+      role="alert"
+      className="border border-black px-8 py-16 text-center"
+    >
       <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
         ■ ERROR
       </p>

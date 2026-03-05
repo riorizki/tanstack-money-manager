@@ -37,7 +37,11 @@ export function NavItem({
       )
 
   return (
-    <Button asChild variant="ghost" className={cn(wrapperClassName, baseClassName)}>
+    <Button
+      asChild
+      variant="ghost"
+      className={cn(wrapperClassName, baseClassName)}
+    >
       <Link to={to} onClick={onNavigate}>
         <span
           className={cn(

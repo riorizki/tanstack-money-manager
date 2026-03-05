@@ -23,8 +23,18 @@ import { Separator } from '@/components/ui/separator'
 import { NavItem } from './NavItem'
 
 const NAV_ITEMS = [
-  { to: '/app/dashboard', label: 'Dashboard', icon: LayoutDashboard, index: '01' },
-  { to: '/app/transactions', label: 'Transactions', icon: ArrowLeftRight, index: '02' },
+  {
+    to: '/app/dashboard',
+    label: 'Dashboard',
+    icon: LayoutDashboard,
+    index: '01',
+  },
+  {
+    to: '/app/transactions',
+    label: 'Transactions',
+    icon: ArrowLeftRight,
+    index: '02',
+  },
   { to: '/app/accounts', label: 'Accounts', icon: Wallet, index: '03' },
   { to: '/app/budgets', label: 'Budgets', icon: PieChart, index: '04' },
   { to: '/app/goals', label: 'Goals', icon: Target, index: '05' },

@@ -5,7 +5,12 @@ interface PageHeaderProps {
   actions?: React.ReactNode
 }
 
-export function PageHeader({ section, title, description, actions }: PageHeaderProps) {
+export function PageHeader({
+  section,
+  title,
+  description,
+  actions,
+}: PageHeaderProps) {
   return (
     <header className="mb-10">
       {section && (
@@ -24,7 +29,9 @@ export function PageHeader({ section, title, description, actions }: PageHeaderP
             <p className="mt-2 text-sm text-muted-foreground">{description}</p>
           )}
         </div>
-        {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
+        {actions && (
+          <div className="flex shrink-0 items-center gap-2">{actions}</div>
+        )}
       </div>
     </header>
   )

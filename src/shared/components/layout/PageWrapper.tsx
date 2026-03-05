@@ -6,9 +6,5 @@ interface PageWrapperProps {
 }
 
 export function PageWrapper({ children, className }: PageWrapperProps) {
-  return (
-    <main className={cn('px-8 py-10', className)}>
-      {children}
-    </main>
-  )
+  return <main className={cn('px-8 py-10', className)}>{children}</main>
 }
