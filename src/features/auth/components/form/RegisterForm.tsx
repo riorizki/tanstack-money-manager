@@ -11,9 +11,9 @@ import {
 } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { registerSchema } from '../schema/register.schema'
-import type { RegisterInput } from '../schema/register.schema'
-import { useRegister } from '../query/auth.queries'
+import { registerSchema } from '../../schema/register.schema'
+import type { RegisterInput } from '../../schema/register.schema'
+import { useRegister } from '../../query/auth.queries'
 
 export function RegisterForm() {
   const { mutate: register, isPending, error } = useRegister()

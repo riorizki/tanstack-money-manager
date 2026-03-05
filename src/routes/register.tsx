@@ -1,7 +1,7 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
-import { RegisterForm } from '@/features/auth/components/RegisterForm'
+import { RegisterPage } from '@/features/auth/components/pages/RegisterPage'
 
-export const Route = createFileRoute('/_auth/register')({
+export const Route = createFileRoute('/register')({
   beforeLoad: async ({ context }) => {
     if (context.user) {
       throw redirect({ to: '/app' })
@@ -9,7 +9,3 @@ export const Route = createFileRoute('/_auth/register')({
   },
   component: RegisterPage,
 })
-
-function RegisterPage() {
-  return <RegisterForm />
-}

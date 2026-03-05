@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { ErrorState } from '@/shared/components/layout/ErrorState'
-import type { AccountWithBalance } from '../types'
+import type { AccountWithBalance } from '../../types'
 import { AccountCard } from './AccountCard'
 
 interface AccountListProps {

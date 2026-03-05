@@ -11,7 +11,9 @@ export function normalizeOptionalField(value: string | null | undefined) {
   return trimmed.length > 0 ? trimmed : null
 }
 
-export function toAccountWithBalance(account: PrismaAccount): AccountWithBalance {
+export function toAccountWithBalance(
+  account: PrismaAccount,
+): AccountWithBalance {
   const startingBalance = Number(account.startingBalance)
 
   return {

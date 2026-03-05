@@ -29,9 +29,9 @@ import {
 } from '@/components/ui/select'
 import { CURRENCIES, DEFAULT_CURRENCY } from '@/shared/constants/currencies'
 import { AccountType } from '@/shared/constants/enums'
-import { createAccountSchema } from '../schema/account.schema'
-import type { CreateAccountInput } from '../schema/account.schema'
-import { AccountTypeIcon } from './AccountTypeIcon'
+import { createAccountSchema } from '../../schema/account.schema'
+import type { CreateAccountInput } from '../../schema/account.schema'
+import { AccountTypeIcon } from '../shared/AccountTypeIcon'
 
 interface AccountFormProps {
   mode?: 'create' | 'edit'

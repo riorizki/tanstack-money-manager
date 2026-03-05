@@ -5,7 +5,7 @@ import {
   toAccountWithBalance,
 } from './account-server.utils'
 import { updateAccountPayloadSchema } from './account-server.schema'
-import { requireCurrentUser } from './require-current-user.server'
+import { requireCurrentUser } from './require-current-user'
 
 export const updateAccount = createServerFn({ method: 'POST' })
   .inputValidator(updateAccountPayloadSchema)

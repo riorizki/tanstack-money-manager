@@ -1,5 +1,5 @@
 export * from './types'
 export * from './hooks/use-auth'
 export * from './query/auth.queries'
-export { LoginForm } from './components/LoginForm'
-export { RegisterForm } from './components/RegisterForm'
+export { LoginForm } from './components/form/LoginForm'
+export { RegisterForm } from './components/form/RegisterForm'

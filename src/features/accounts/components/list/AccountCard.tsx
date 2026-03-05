@@ -11,8 +11,8 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { CURRENCIES } from '@/shared/constants/currencies'
 import { formatCurrency } from '@/shared/utils/currency'
-import type { AccountWithBalance } from '../types'
-import { AccountTypeIcon } from './AccountTypeIcon'
+import type { AccountWithBalance } from '../../types'
+import { AccountTypeIcon } from '../shared/AccountTypeIcon'
 
 interface AccountCardProps {
   account: AccountWithBalance

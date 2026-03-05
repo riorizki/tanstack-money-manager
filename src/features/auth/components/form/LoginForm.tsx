@@ -11,9 +11,9 @@ import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from '@tanstack/react-router'
 import { useForm } from 'react-hook-form'
-import { useLogin } from '../query/auth.queries'
-import type { LoginInput } from '../schema/login.schema'
-import { loginSchema } from '../schema/login.schema'
+import { useLogin } from '../../query/auth.queries'
+import type { LoginInput } from '../../schema/login.schema'
+import { loginSchema } from '../../schema/login.schema'
 
 export function LoginForm() {
   const { mutate: login, isPending, error } = useLogin()

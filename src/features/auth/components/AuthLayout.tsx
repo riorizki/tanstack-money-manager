@@ -1,10 +1,6 @@
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import type { ReactNode } from 'react'
 
-export const Route = createFileRoute('/_auth')({
-  component: AuthLayout,
-})
-
-function AuthLayout() {
+export function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12 sm:px-8">
       <div
@@ -15,9 +11,7 @@ function AuthLayout() {
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-30 bg-[linear-gradient(to_right,#d6d6d6_1px,transparent_1px),linear-gradient(to_bottom,#d6d6d6_1px,transparent_1px)] bg-size-[64px_64px]"
       />
-      <section className="relative w-full max-w-136">
-        <Outlet />
-      </section>
+      <section className="relative w-full max-w-136">{children}</section>
     </main>
   )
 }

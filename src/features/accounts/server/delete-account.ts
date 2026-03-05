@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { accountRepository } from '../repository/account.repository'
 import { accountIdSchema } from './account-server.schema'
-import { requireCurrentUser } from './require-current-user.server'
+import { requireCurrentUser } from './require-current-user'
 
 export const deleteAccount = createServerFn({ method: 'POST' })
   .inputValidator(accountIdSchema)

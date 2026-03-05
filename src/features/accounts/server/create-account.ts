@@ -5,7 +5,7 @@ import {
   normalizeOptionalField,
   toAccountWithBalance,
 } from './account-server.utils'
-import { requireCurrentUser } from './require-current-user.server'
+import { requireCurrentUser } from './require-current-user'
 
 export const createAccount = createServerFn({ method: 'POST' })
   .inputValidator(createAccountSchema)
