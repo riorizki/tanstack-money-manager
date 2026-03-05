@@ -12,11 +12,11 @@ export const Route = createFileRoute('/app')({
 
 function AppLayout() {
   return (
-    <div className="min-h-screen bg-[#f4f4f4] md:flex">
+    <div className="min-h-screen bg-[#f4f4f4] md:flex md:h-screen md:overflow-hidden">
       <AppSidebar />
       <main
         aria-label="Application Content"
-        className="min-w-0 flex-1 overflow-y-auto"
+        className="min-w-0 flex-1 overflow-y-auto md:h-screen"
       >
         <Outlet />
       </main>

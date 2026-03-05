@@ -1,0 +1,26 @@
+model Account {
+  id              String      @id @default(cuid()) @map("id")
+  userId          String      @map("user_id")
+  name            String      @map("name")
+  type            AccountType @map("type")
+  currency        String      @default("IDR") @map("currency")
+  startingBalance Decimal     @default(0) @db.Decimal(18, 2) @map("starting_balance")
+  color           String?     @map("color")
+  icon            String?     @map("icon")
+  isActive        Boolean     @default(true) @map("is_active")
+  createdAt       DateTime    @default(now()) @map("created_at")
+  updatedAt       DateTime    @updatedAt @map("updated_at")
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "accounts_user_id_idx")
+  @@map("accounts")
+}
+
+enum AccountType {
+  CASH
+  BANK
+  EWALLET
+  CREDIT_CARD
+  INVESTMENT
+  OTHER
+}

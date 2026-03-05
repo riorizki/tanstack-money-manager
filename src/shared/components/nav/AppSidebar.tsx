@@ -164,7 +164,7 @@ export function AppSidebar() {
 
       <aside
         aria-label="Primary Sidebar"
-        className="relative hidden h-screen w-[19rem] shrink-0 flex-col border-r-2 border-black bg-[#efefef] md:flex"
+        className="relative hidden h-screen w-[19rem] shrink-0 flex-col border-r-2 border-black bg-[#efefef] md:sticky md:top-0 md:flex"
       >
         <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,#d4d4d4_1px,transparent_1px),linear-gradient(to_bottom,#d4d4d4_1px,transparent_1px)] [background-size:44px_44px]" />
 
@@ -182,7 +182,7 @@ export function AppSidebar() {
 
         <Separator className="relative bg-black" />
 
-        <section className="relative flex-1 overflow-y-auto px-4 py-5">
+        <section className="relative flex-1 overflow-hidden px-4 py-5">
           <h3 className="px-2 text-[10px] font-semibold uppercase tracking-[0.28em] text-black/35">
             Workspace
           </h3>

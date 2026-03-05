@@ -15,6 +15,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AuthRegisterRouteImport } from './routes/_auth.register'
 import { Route as AuthLoginRouteImport } from './routes/_auth.login'
+import { Route as AppAccountsIndexRouteImport } from './routes/app/accounts/index'
+import { Route as AppAccountsNewRouteImport } from './routes/app/accounts/new'
+import { Route as AppAccountsAccountIdEditRouteImport } from './routes/app/accounts/$accountId/edit'
 
 const AppRoute = AppRouteImport.update({
   id: '/app',
@@ -45,6 +48,22 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AuthRoute,
 } as any)
+const AppAccountsIndexRoute = AppAccountsIndexRouteImport.update({
+  id: '/accounts/',
+  path: '/accounts/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAccountsNewRoute = AppAccountsNewRouteImport.update({
+  id: '/accounts/new',
+  path: '/accounts/new',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAccountsAccountIdEditRoute =
+  AppAccountsAccountIdEditRouteImport.update({
+    id: '/accounts/$accountId/edit',
+    path: '/accounts/$accountId/edit',
+    getParentRoute: () => AppRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -52,12 +71,18 @@ export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/app/': typeof AppIndexRoute
+  '/app/accounts/new': typeof AppAccountsNewRoute
+  '/app/accounts/': typeof AppAccountsIndexRoute
+  '/app/accounts/$accountId/edit': typeof AppAccountsAccountIdEditRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/app': typeof AppIndexRoute
+  '/app/accounts/new': typeof AppAccountsNewRoute
+  '/app/accounts': typeof AppAccountsIndexRoute
+  '/app/accounts/$accountId/edit': typeof AppAccountsAccountIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -67,12 +92,30 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/register': typeof AuthRegisterRoute
   '/app/': typeof AppIndexRoute
+  '/app/accounts/new': typeof AppAccountsNewRoute
+  '/app/accounts/': typeof AppAccountsIndexRoute
+  '/app/accounts/$accountId/edit': typeof AppAccountsAccountIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/app' | '/login' | '/register' | '/app/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/login'
+    | '/register'
+    | '/app/'
+    | '/app/accounts/new'
+    | '/app/accounts/'
+    | '/app/accounts/$accountId/edit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register' | '/app'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/app'
+    | '/app/accounts/new'
+    | '/app/accounts'
+    | '/app/accounts/$accountId/edit'
   id:
     | '__root__'
     | '/'
@@ -81,6 +124,9 @@ export interface FileRouteTypes {
     | '/_auth/login'
     | '/_auth/register'
     | '/app/'
+    | '/app/accounts/new'
+    | '/app/accounts/'
+    | '/app/accounts/$accountId/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -133,6 +179,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof AuthRoute
     }
+    '/app/accounts/': {
+      id: '/app/accounts/'
+      path: '/accounts'
+      fullPath: '/app/accounts/'
+      preLoaderRoute: typeof AppAccountsIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/accounts/new': {
+      id: '/app/accounts/new'
+      path: '/accounts/new'
+      fullPath: '/app/accounts/new'
+      preLoaderRoute: typeof AppAccountsNewRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/accounts/$accountId/edit': {
+      id: '/app/accounts/$accountId/edit'
+      path: '/accounts/$accountId/edit'
+      fullPath: '/app/accounts/$accountId/edit'
+      preLoaderRoute: typeof AppAccountsAccountIdEditRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -150,10 +217,16 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 interface AppRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
+  AppAccountsNewRoute: typeof AppAccountsNewRoute
+  AppAccountsIndexRoute: typeof AppAccountsIndexRoute
+  AppAccountsAccountIdEditRoute: typeof AppAccountsAccountIdEditRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppIndexRoute: AppIndexRoute,
+  AppAccountsNewRoute: AppAccountsNewRoute,
+  AppAccountsIndexRoute: AppAccountsIndexRoute,
+  AppAccountsAccountIdEditRoute: AppAccountsAccountIdEditRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

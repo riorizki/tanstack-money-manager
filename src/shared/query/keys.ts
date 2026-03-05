@@ -1,4 +1,5 @@
 import type { DateRange } from '../types'
+import type { AccountType } from '../constants/enums'
 
 type FilterBase = Record<string, unknown>
 
@@ -10,7 +11,9 @@ interface TransactionFilters extends FilterBase {
 }
 
 interface AccountFilters extends FilterBase {
-  type?: string
+  type?: AccountType
+  currency?: string
+  includeInactive?: boolean
 }
 
 export const queryKeys = {

@@ -1,9 +1,10 @@
 export enum AccountType {
-  CHECKING = 'CHECKING',
-  SAVINGS = 'SAVINGS',
   CREDIT_CARD = 'CREDIT_CARD',
   CASH = 'CASH',
+  BANK = 'BANK',
+  EWALLET = 'EWALLET',
   INVESTMENT = 'INVESTMENT',
+  OTHER = 'OTHER',
 }
 
 export enum TransactionType {
